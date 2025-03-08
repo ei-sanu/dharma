@@ -1,0 +1,51 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.animate-fade-in {
+    animation: fadeIn 0.5s ease-in;
+}
+
+.animate-slide-in {
+    animation: slideIn 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.tab-btn {
+    @apply bg-white text-gray-700 hover:bg-gray-50;
+}
+
+.tab-btn.active {
+    @apply bg-blue-600 text-white;
+}
+
+.message {
+    @apply max-w-[80%] p-3 rounded-lg animate-fade-in;
+}
+
+.message.bot {
+    @apply bg-blue-100 text-blue-900;
+}
+
+.message.user {
+    @apply bg-green-100 text-green-900;
+}

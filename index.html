@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Security Awareness</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="background-spline">
+        <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.73/build/spline-viewer.js"></script>
+        <spline-viewer url="https://prod.spline.design/K627SVxLxlacE6WF/scene.splinecode"></spline-viewer>
+    </div>
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <h1>Web Security Awareness</h1>
+            </div>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <div class="nav-menu" id="nav-menu">
+                <ul class="nav-links">
+                    <li><a href="#" class="nav-link active" data-target="intro">Introduction</a></li>
+                    <li><a href="sqlinjection/project/index.html" class="nav-link" data-target="sql-injection">SQL Injection</a></li>
+                    <li><a href="#" class="nav-link" data-target="xss">Cross-Site Scripting (XSS)</a></li>
+                    <li><a href="#" class="nav-link" data-target="csrf">Cross-Site Request Forgery</a></li>
+                    <li><a href="#" class="nav-link" data-target="about">About</a></li>
+                    <li><a href="#" class="nav-link" data-target="resources">Resources</a></li>
+                    <li><a href="#" class="nav-link" data-target="contact">Contact</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container">
+        <!-- Remove or comment out this section -->
+        <!-- <div class="spline-container">
+            <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.73/build/spline-viewer.js"></script>
+            <spline-viewer url="https://prod.spline.design/K627SVxLxlacE6WF/scene.splinecode"></spline-viewer>
+        </div> -->
+        <!-- Introduction Section -->
+        <div id="intro" class="tab-content active">
+            <div class="card">
+                <h2>Welcome to Web Security Awareness</h2>
+                <p>This interactive website will help you understand common web vulnerabilities through hands-on
+                    examples and visualizations. Understanding these security issues is crucial for anyone involved in
+                    web development or cybersecurity.</p>
+
+                <div class="alert alert-info">
+                    <strong>Note:</strong> All examples on this site are simulations and completely safe to try. No
+                    actual vulnerabilities are being exploited.
+                </div>
+
+                <h3>What You'll Learn</h3>
+                <p>Click on the navigation links to explore three common web security vulnerabilities:</p>
+
+                <div class="animation-container">
+                    <div class="browser"></div>
+                    <div class="server"></div>
+                    <div class="database"></div>
+                    <div class="hacker"></div>
+                    <div class="packet" id="packet1" style="left: 50px; top: 80px; opacity: 0;"></div>
+                    <div class="packet" id="packet2" style="left: 250px; top: 80px; opacity: 0;"></div>
+                </div>
+
+                <div class="step-indicator">
+                    <div class="step active" data-step="1">1</div>
+                    <div class="step" data-step="2">2</div>
+                    <div class="step" data-step="3">3</div>
+                </div>
+
+                <button id="start-animation" class="btn">Start Animation</button>
+                <button id="reset-animation" class="btn btn-danger">Reset</button>
+
+                <h3>Choose a Topic to Begin</h3>
+                <p>Click on one of the topics in the navigation bar above to start learning about web security
+                    vulnerabilities.</p>
+            </div>
+        </div>
+
+        <!-- SQL Injection Section -->
+        <div id="sql-injection" class="tab-content">
+            <div class="card">
+                <h2>SQL Injection</h2>
+                <p>SQL Injection is a code injection technique that exploits vulnerabilities in the database layer of an
+                    application. Attackers can insert malicious SQL statements that can read, modify, or delete data
+                    from the database.</p>
+
+                <div class="alert alert-danger">
+                    <strong>Severity:</strong> High - SQL Injection can lead to data theft, data loss, or even complete
+                    system compromise.
+                </div>
+
+                <h3>How It Works</h3>
+                <p>SQL Injection occurs when user input is incorrectly filtered and directly incorporated into SQL
+                    queries:</p>
+
+                <div class="animation-container" id="sql-animation">
+                    <div class="browser" style="left: 40px;"></div>
+                    <div class="server" style="right: 120px;"></div>
+                    <div class="database" style="right: 125px; top: 70px;"></div>
+                    <div class="packet" id="sql-packet1" style="left: 90px; top: 80px; opacity: 0;"></div>
+                    <div class="packet" id="sql-packet2" style="left: 190px; top: 80px; opacity: 0;"></div>
+                </div>
+
+                <div class="step-indicator">
+                    <div class="step active" data-step="1" data-animation="sql">1</div>
+                    <div class="step" data-step="2" data-animation="sql">2</div>
+                    <div class="step" data-step="3" data-animation="sql">3</div>
+                </div>
+
+                <button id="start-sql-animation" class="btn">Start Animation</button>
+                <button id="reset-sql-animation" class="btn btn-danger">Reset</button>
+
+                <h3>Example of Vulnerable Code</h3>
+                <pre><code>// Vulnerable PHP code
+$username = $_POST['username'];
+$query = "SELECT * FROM users WHERE username = '$username'";
+$result = $conn->query($query);</code></pre>
+
+                <h3>SQL Injection Playground</h3>
+                <p>Try entering different values in the login form below to see how SQL injection works:</p>
+
+                <div class="demo-window">
+                    <div class="demo-window-header">Login Form Simulation</div>
+
+                    <div class="form-group">
+                        <label for="sql-username">Username:</label>
+                        <input type="text" id="sql-username" class="form-control" placeholder="Try: admin' --">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="sql-password">Password:</label>
+                        <input type="password" id="sql-password" class="form-control" placeholder="Any password">
+                    </div>
+
+                    <button id="sql-login-btn" class="btn">Login</button>
+
+                    <div id="sql-query-display" class="code-editor" style="margin-top: 1rem; display: none;">
+                        Generated SQL: <span id="sql-query-text"></span>
+                    </div>
+
+                    <div id="sql-login-result" style="margin-top: 1rem; display: none;"></div>
+
+                    <table id="sql-results-table" style="display: none;">
+                        <thead>
+                            <tr>
+                                <th>id</th>
+                                <th>username</th>
+                                <th>email</th>
+                                <th>role</th>
+                            </tr>
+                        </thead>
+                        <tbody id="sql-results-body">
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3>Common SQL Injection Attacks</h3>
+                <p>Try these examples in the login form above:</p>
+                <ul>
+                    <li><code>admin' --</code> - Comment out the password check</li>
+                    <li><code>admin' OR '1'='1</code> - Always true condition</li>
+                    <li><code>admin'; DROP TABLE users; --</code> - Destructive action</li>
+                </ul>
+
+                <h3>Prevention Techniques</h3>
+                <p>To prevent SQL Injection attacks, always:</p>
+                <ul>
+                    <li>Use parameterized queries or prepared statements</li>
+                    <li>Apply input validation and sanitization</li>
+                    <li>Implement least privilege principle for database accounts</li>
+                    <li>Use ORM (Object-Relational Mapping) libraries</li>
+                </ul>
+
+                <h3>Secure Code Example</h3>
+                <pre><code>// Secure PHP code using prepared statements
+$stmt = $conn->prepare("SELECT * FROM users WHERE username = ?");
+$stmt->bind_param("s", $_POST['username']);
+$stmt->execute();
+$result = $stmt->get_result();</code></pre>
+            </div>
+        </div>
+
+        <!-- Cross-Site Scripting (XSS) Section -->
+        <div id="xss" class="tab-content">
+            <div class="card">
+                <h2>Cross-Site Scripting (XSS)</h2>
+                <p>Cross-Site Scripting (XSS) is a vulnerability that allows attackers to inject malicious client-side
+                    scripts into web pages viewed by other users. This can lead to session hijacking, credential theft,
+                    and more.</p>
+
+                <div class="alert alert-danger">
+                    <strong>Severity:</strong> High - XSS can lead to account compromise, data theft, and website
+                    defacement.
+                </div>
+
+                <h3>Types of XSS</h3>
+                <div class="tabs">
+                    <div class="tab active" data-target="reflected-xss">Reflected XSS</div>
+                    <div class="tab" data-target="stored-xss">Stored XSS</div>
+                    <div class="tab" data-target="dom-xss">DOM-based XSS</div>
+                </div>
+
+                <div id="reflected-xss" class="tab-content active">
+                    <h4>Reflected XSS</h4>
+                    <p>Occurs when malicious script is reflected off a web server, such as in search results or error
+                        messages. The attack is delivered through URLs.</p>
+
+                    <div class="animation-container" id="reflected-xss-animation">
+                        <div class="browser" style="left: 40px;"></div>
+                        <div class="server" style="right: 40px;"></div>
+                        <div class="packet" id="reflected-packet1" style="left: 90px; top: 80px; opacity: 0;"></div>
+                        <div class="packet" id="reflected-packet2" style="left: 250px; top: 80px; opacity: 0;"></div>
+                    </div>
+
+                    <button id="start-reflected-animation" class="btn">Start Animation</button>
+                    <button id="reset-reflected-animation" class="btn btn-danger">Reset</button>
+                </div>
+
+                <div id="stored-xss" class="tab-content">
+                    <h4>Stored XSS</h4>
+                    <p>The malicious script is stored on the target server, such as in a database, and is later
+                        retrieved and displayed to users who access the affected page.</p>
+
+                    <div class="animation-container" id="stored-xss-animation">
+                        <div class="browser" style="left: 40px;"></div>
+                        <div class="server" style="right: 120px;"></div>
+                        <div class="database" style="right: 125px; top: 70px;"></div>
+                        <div class="packet" id="stored-packet1" style="left: 90px; top: 80px; opacity: 0;"></div>
+                        <div class="packet" id="stored-packet2" style="left: 190px; top: 80px; opacity: 0;"></div>
+                    </div>
+
+                    <button id="start-stored-animation" class="btn">Start Animation</button>
+                    <button id="reset-stored-animation" class="btn btn-danger">Reset</button>
+                </div>
+
+                <div id="dom-xss" class="tab-content">
+                    <h4>DOM-based XSS</h4>
+                    <p>Occurs entirely in the browser when JavaScript modifies the DOM environment in an unsafe way. The
+                        server is not involved in this type of attack.</p>
+
+                    <div class="animation-container" id="dom-xss-animation">
+                        <div class="browser" style="left: 40px;"></div>
+                        <div class="packet" id="dom-packet1" style="left: 70px; top: 90px; opacity: 0;"></div>
+                    </div>
+
+                    <button id="start-dom-animation" class="btn">Start Animation</button>
+                    <button id="reset-dom-animation" class="btn btn-danger">Reset</button>
+                </div>
+
+                <h3>XSS Playground</h3>
+                <p>Enter some text in the box below to see how XSS works. Try including HTML or JavaScript tags:</p>
+
+                <div class="demo-window">
+                    <div class="demo-window-header">XSS Testing Environment</div>
+                    <div class="form-group">
+                        <label for="xss-input">Input:</label>
+                        <textarea id="xss-input" class="form-control"
+                            placeholder="Try: <script>alert('XSS')</script>"></textarea>
+                    </div>
+                    <button id="xss-test-btn" class="btn">Test Input</button>
+                    <div class="output-container">
+                        <h4>Output:</h4>
+                        <div id="xss-output" class="output-panel"></div>
+                    </div>
+                    <div id="xss-analysis" class="analysis-panel"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>
