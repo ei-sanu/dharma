@@ -1,0 +1,55 @@
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #121212;
+        color: #fff;
+        display: flex;
+        height: 100vh;
+        justify-content: center;
+        align-items: center;
+        margin: 0;
+    }
+
+    .container {
+        text-align: center;
+        background-color: #1e1e1e;
+        padding: 20px;
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.7);
+    }
+
+    button {
+        background-color: #FFD700;
+        /* Yellow for default buttons */
+        color: #000;
+        border: none;
+        padding: 10px 20px;
+        margin: 10px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+        background-color: #FFA500;
+        /* Darker yellow on hover */
+    }
+
+    .btn.correct {
+        background-color: #4CAF50;
+    }
+
+    /* Green for correct answer */
+    .btn.wrong {
+        background-color: #FF6347;
+    }
+
+    /* Red for wrong answer */
+    .btn-container {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .hide {
+        display: none;
+    }

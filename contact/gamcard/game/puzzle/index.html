@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Breach Escape Room</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Data Breach Escape Room</h1>
+        <button class="btn" id="startButton" onclick="startGame()">Start Game</button>
+        <div id="puzzles" class="hidden"></div>
+        <div id="summary" class="hidden">
+            <h2>Summary</h2>
+            <ul id="results"></ul>
+        </div>
+    </div>
+
+    <script>
+        const puzzles = [
+            { question: "Find the hidden password in this clue: \"The key lies between *secure* and *layer*.\"", answer: "tls" },
+            { question: "Decode this binary code: 01000110 01101001 01110010 01100101", answer: "fire" },
+            { question: "Identify the phishing attempt: Which link is suspicious? (a) www.bankofamerica.com (b) www.bankofamerca.com (c) www.banking.com", answer: "b" },
+            { question: "What protocol encrypts web traffic with HTTPS?", answer: "tls" },
+            { question: "Which is the strongest password? (a) password123 (b) Q$7h*9k! (c) abcde123", answer: "b" },
+            { question: "Which data type is prone to buffer overflow in C language?", answer: "char" },
+            { question: "Which port is commonly used for FTP?", answer: "21" },
+            { question: "Name the security protocol used for Wi-Fi encryption.", answer: "wpa3" },
+            { question: "Which method prevents SQL injection?", answer: "prepared statements" },
+            { question: "Which attack tricks users into clicking malicious links?", answer: "phishing" }
+        ];
+
+        let currentPuzzleIndex = 0;
+        const results = [];
+        let timer;
+
+        function startGame() {
+            document.getElementById("startButton").classList.add("hidden");
+            document.getElementById("puzzles").classList.remove("hidden");
+            showNextPuzzle();
+        }
+
+        function showNextPuzzle() {
+            if (currentPuzzleIndex < puzzles.length) {
+                clearInterval(timer); // Clear any existing timer to prevent issues
+                const puzzleDiv = document.getElementById("puzzles");
+                puzzleDiv.innerHTML = `
+                    <div class="puzzle">
+                        <p><strong>Puzzle ${currentPuzzleIndex + 1}:</strong> ${puzzles[currentPuzzleIndex].question}</p>
+                        <input type="text" id="answer${currentPuzzleIndex}" class="input-box" placeholder="Enter your answer">
+                        <button class="btn" onclick="checkAnswer()">Submit</button>
+                        <p id="timer">Time left: 30s</p>
+                    </div>
+                `;
+                startTimer();
+            } else {
+                showResults();
+            }
+        }
+
+        function startTimer() {
+            let timeLeft = 30;
+            const timerElement = document.getElementById("timer");
+            timer = setInterval(() => {
+                timeLeft--;
+                timerElement.textContent = `Time left: ${timeLeft}s`;
+                if (timeLeft <= 0) {
+                    clearInterval(timer);
+                    results.push({ puzzle: currentPuzzleIndex + 1, answer: "(Time Expired)" });
+                    currentPuzzleIndex++;
+                    showNextPuzzle();
+                }
+            }, 1000);
+        }
+
+        function checkAnswer() {
+            clearInterval(timer); // Stop the timer when user submits answer
+            const userAnswer = document.getElementById(`answer${currentPuzzleIndex}`).value.trim().toLowerCase();
+            const correctAnswer = puzzles[currentPuzzleIndex].answer;
+            results.push({
+                puzzle: currentPuzzleIndex + 1,
+                answer: userAnswer === correctAnswer ? "Correct" : `Incorrect (Answer: ${correctAnswer})`
+            });
+            currentPuzzleIndex++;
+            showNextPuzzle();
+        }
+
+        function showResults() {
+            const resultsContainer = document.getElementById("results");
+            resultsContainer.innerHTML = "";
+            let score = 0;
+
+            results.forEach(result => {
+                const listItem = document.createElement("li");
+                listItem.innerHTML = `Puzzle ${result.puzzle}: ${result.answer}`;
+                if (result.answer === "Correct") score++;
+                resultsContainer.appendChild(listItem);
+            });
+
+            const scoreItem = document.createElement("li");
+            scoreItem.innerHTML = `<strong>Your Score: ${score} / ${puzzles.length}</strong>`;
+            resultsContainer.appendChild(scoreItem);
+
+            document.getElementById("summary").classList.remove("hidden");
+        }
+    </script>
+</body>
+
+</html>
