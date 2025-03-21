@@ -168,3 +168,40 @@ window.addEventListener('resize', () => {
         document.body.classList.remove('resize-animation-stopper');
     }, 400);
 });
+
+// Marquee functionality
+document.addEventListener('DOMContentLoaded', () => {
+    const marquee = document.querySelector('.marquee');
+
+    // Clone content for smooth infinite scroll
+    const content = document.querySelector('.marquee-content');
+    const clone = content.cloneNode(true);
+    marquee.appendChild(clone);
+
+    // Optional: Pause on hover
+    marquee.addEventListener('mouseenter', () => {
+        marquee.style.animationPlayState = 'paused';
+    });
+
+    marquee.addEventListener('mouseleave', () => {
+        marquee.style.animationPlayState = 'running';
+    });
+});
+
+// Animated List functionality
+document.addEventListener('DOMContentLoaded', () => {
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, {
+        threshold: 0.1
+    });
+
+    // Observe all list items
+    document.querySelectorAll('.animated-list-item').forEach((item) => {
+        observer.observe(item);
+    });
+});

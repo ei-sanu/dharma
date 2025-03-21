@@ -1,0 +1,65 @@
+@import 'https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css';
+
+/* Custom styles */
+html {
+    scroll-behavior: smooth;
+}
+
+.aspect-w-16 {
+    position: relative;
+    padding-bottom: 56.25%;
+}
+
+.aspect-w-16 iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+/* Mobile menu transition */
+#mobileMenu {
+    transition: all 0.3s ease-in-out;
+}
+
+/* Icon colors */
+.text-red-500 {
+    color: #ef4444;
+}
+
+.text-yellow-500 {
+    color: #eab308;
+}
+
+.text-green-500 {
+    color: #22c55e;
+}
+
+.text-blue-500 {
+    color: #3b82f6;
+}
+
+.text-purple-500 {
+    color: #a855f7;
+}
+
+/* Hover effects */
+.hover\:text-white:hover {
+    color: white;
+}
+
+.hover\:bg-gray-700:hover {
+    background-color: #374151;
+}
+
+/* Responsive grid */
+@media (min-width: 768px) {
+    .md\:grid-cols-2 {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .md\:grid-cols-3 {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
