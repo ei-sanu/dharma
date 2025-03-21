@@ -1,0 +1,938 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terms and Conditions | Web Security Awareness</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="icon" type="image/png" href="favicon/DHARMA.png">
+    <style>
+        :root {
+            --primary-color: #4a6cf7;
+            --secondary-color: #2e3856;
+            --accent-color: #f44336;
+            --text-color: #333;
+            --text-light: #666;
+            --bg-color: #f9f9f9;
+            --card-bg: #ffffff;
+            --border-color: #e0e0e0;
+            --success-color: #4CAF50;
+            --info-color: #2196F3;
+            --warning-color: #FFC107;
+            --danger-color: #F44336;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Loader */
+        .page-loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #121212;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s, visibility 0.5s;
+        }
+
+        .loader-content {
+            text-align: center;
+        }
+
+        .loader-spinner {
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top: 4px solid var(--primary-color);
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+
+        .loader-text {
+            color: white;
+            letter-spacing: 3px;
+            font-weight: bold;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Header and Navigation */
+        header {
+            background-color: var(--card-bg);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .logo h1 {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .nav-menu {
+            display: flex;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 1.5rem;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+            padding: 0.5rem 0;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: var(--primary-color);
+        }
+
+        .nav-link:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--primary-color);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover:after,
+        .nav-link.active:after {
+            width: 100%;
+        }
+
+        .login-btn {
+            background-color: var(--primary-color);
+            color: white !important;
+            padding: 0.5rem 1rem !important;
+            border-radius: 4px;
+        }
+
+        .login-btn:hover {
+            background-color: #3a5ad4;
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+        }
+
+        .hamburger span {
+            display: block;
+            width: 25px;
+            height: 3px;
+            margin: 5px 0;
+            background-color: var(--text-color);
+            transition: all 0.3s ease;
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+            flex: 1;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        h2 {
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+        }
+
+        h3 {
+            color: var(--secondary-color);
+            margin: 1.5rem 0 1rem;
+            font-size: 1.4rem;
+        }
+
+        p {
+            margin-bottom: 1rem;
+            color: var(--text-color);
+        }
+
+        .alert {
+            padding: 1rem;
+            border-radius: 4px;
+            margin-bottom: 1.5rem;
+            font-weight: 500;
+        }
+
+        .alert-info {
+            background-color: rgba(33, 150, 243, 0.1);
+            border-left: 4px solid var(--info-color);
+            color: #0a558c;
+        }
+
+        .terms-navigation {
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .terms-navigation h3 {
+            margin-top: 0;
+        }
+
+        .terms-navigation ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .terms-navigation li {
+            margin-bottom: 0.5rem;
+        }
+
+        .terms-navigation a {
+            color: var(--primary-color);
+            text-decoration: none;
+            transition: color 0.3s;
+            display: block;
+            padding: 0.5rem;
+            border-radius: 4px;
+        }
+
+        .terms-navigation a:hover {
+            background-color: rgba(74, 108, 247, 0.1);
+        }
+
+        .terms-section {
+            margin-top: 3rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .terms-section:first-of-type {
+            border-top: none;
+            margin-top: 0;
+            padding-top: 0;
+        }
+
+        ul.terms-list {
+            padding-left: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        ul.terms-list li {
+            margin-bottom: 0.5rem;
+        }
+
+        .btn {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: background-color 0.3s;
+            display: inline-block;
+            text-decoration: none;
+        }
+
+        .btn:hover {
+            background-color: #3a5ad4;
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 1px solid var(--primary-color);
+            color: var(--primary-color);
+        }
+
+        .btn-outline:hover {
+            background-color: rgba(74, 108, 247, 0.1);
+        }
+
+        .last-updated {
+            font-style: italic;
+            color: var(--text-light);
+            margin: 2rem 0;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 3rem 1rem 1rem;
+            margin-top: auto;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-section {
+            flex: 1;
+            min-width: 250px;
+            margin-bottom: 2rem;
+            padding: 0 1rem;
+        }
+
+        .footer-section h3 {
+            color: white;
+            margin-bottom: 1.2rem;
+            font-size: 1.2rem;
+        }
+
+        .footer-section p,
+        .footer-section ul {
+            opacity: 0.8;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section a {
+            color: white;
+            text-decoration: none;
+            opacity: 0.8;
+            transition: opacity 0.3s;
+        }
+
+        .footer-section a:hover {
+            opacity: 1;
+        }
+
+        .contact-info li {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+
+        .contact-info i {
+            margin-right: 10px;
+            margin-top: 5px;
+        }
+
+        .social-links {
+            display: flex;
+            margin-bottom: 1.5rem;
+        }
+
+        .social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            margin-right: 10px;
+            transition: background-color 0.3s;
+        }
+
+        .social-link:hover {
+            background-color: var(--primary-color);
+        }
+
+        .newsletter h4 {
+            margin-bottom: 1rem;
+            color: white;
+        }
+
+        .subscribe-form {
+            display: flex;
+        }
+
+        .subscribe-form input {
+            flex: 1;
+            padding: 0.75rem;
+            border: none;
+            border-radius: 4px 0 0 4px;
+            outline: none;
+        }
+
+        .subscribe-form button {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 0 1rem;
+            border-radius: 0 4px 4px 0;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .subscribe-form button:hover {
+            background-color: #3a5ad4;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            margin-top: 1rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Scroll to Top Button */
+        .scroll-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 45px;
+            height: 45px;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+            z-index: 99;
+        }
+
+        .scroll-top.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 991px) {
+            .navbar {
+                padding: 1rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hamburger {
+                display: block;
+                z-index: 101;
+            }
+
+            .nav-menu {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 80%;
+                max-width: 400px;
+                height: 100vh;
+                background-color: var(--card-bg);
+                flex-direction: column;
+                padding: 5rem 2rem 2rem;
+                transition: right 0.3s ease;
+                box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+                z-index: 100;
+            }
+
+            .nav-menu.active {
+                right: 0;
+            }
+
+            .nav-links {
+                flex-direction: column;
+            }
+
+            .nav-links li {
+                margin: 0.8rem 0;
+            }
+
+            .hamburger.active span:nth-child(1) {
+                transform: rotate(45deg) translate(5px, 5px);
+            }
+
+            .hamburger.active span:nth-child(2) {
+                opacity: 0;
+            }
+
+            .hamburger.active span:nth-child(3) {
+                transform: rotate(-45deg) translate(7px, -6px);
+            }
+
+            .footer-section {
+                min-width: 100%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h2 {
+                font-size: 1.5rem;
+            }
+
+            h3 {
+                font-size: 1.2rem;
+            }
+
+            .card {
+                padding: 1.5rem;
+            }
+        }
+
+        /* Print styles */
+        @media print {
+
+            .navbar,
+            .footer,
+            .scroll-top,
+            .terms-navigation,
+            .btn {
+                display: none !important;
+            }
+
+            body,
+            .container,
+            .card {
+                background-color: white;
+                color: black;
+                box-shadow: none;
+                padding: 0;
+                margin: 0;
+            }
+
+            .container {
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="page-loader" id="pageLoader">
+        <div class="loader-content">
+            <div class="loader-spinner"></div>
+            <div class="loader-text">LOADING...</div>
+        </div>
+    </div>
+
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <h1>Web Security Awareness</h1>
+            </div>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <div class="nav-menu" id="nav-menu">
+                <ul class="nav-links">
+                    <li><a href="index.html" class="nav-link">Introduction</a></li>
+                    <li><a href="sqlinjection/project/index.html" class="nav-link">SQL Injection</a></li>
+                    <li><a href="xss/project/index.html" class="nav-link">Cross-Site Scripting (XSS)</a></li>
+                    <li><a href="cross/project/index.html" class="nav-link">Cross-Site Request Forgery</a></li>
+                    <li><a href="#" class="nav-link">About</a></li>
+                    <li><a href="contact/index.html" class="nav-link">Contact</a></li>
+                    <li><a href="terms.html" class="nav-link active">Terms</a></li>
+                    <li><a href="login.html" class="nav-link login-btn">Login</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container">
+        <div class="card">
+            <h2>Terms and Conditions</h2>
+            <p>Last Updated: March 21, 2025</p>
+
+            <div class="alert alert-info">
+                <strong>Important:</strong> Please read these Terms and Conditions carefully before using the Web
+                Security Awareness website. By accessing or using our website, you agree to be bound by these Terms.
+            </div>
+
+            <div class="terms-navigation">
+                <h3>Quick Navigation</h3>
+                <ul>
+                    <li><a href="#acceptance">Acceptance of Terms</a></li>
+                    <li><a href="#intellectual-property">Intellectual Property</a></li>
+                    <li><a href="#user-content">User-Generated Content</a></li>
+                    <li><a href="#security-practices">Security Practices</a></li>
+                    <li><a href="#disclaimer">Disclaimer of Warranties</a></li>
+                    <li><a href="#limitation">Limitation of Liability</a></li>
+                    <li><a href="#indemnification">Indemnification</a></li>
+                    <li><a href="#modification">Modification of Terms</a></li>
+                    <li><a href="#governing-law">Governing Law</a></li>
+                    <li><a href="#contact-us">Contact Us</a></li>
+                </ul>
+            </div>
+
+            <div id="acceptance" class="terms-section">
+                <h3>1. Acceptance of Terms</h3>
+                <p>By accessing or using the Web Security Awareness website ("Website"), you acknowledge that you have
+                    read, understood, and agree to be bound by these Terms and Conditions ("Terms"), as well as our
+                    Privacy Policy.</p>
+                <p>If you do not agree to these Terms, please do not use our Website. We reserve the right to update or
+                    modify these Terms at any time without prior notice. Your continued use of the Website following any
+                    changes constitutes your acceptance of such changes.</p>
+            </div>
+
+            <div id="intellectual-property" class="terms-section">
+                <h3>2. Intellectual Property</h3>
+                <p>All content on this Website, including but not limited to text, graphics, logos, images, audio clips,
+                    digital downloads, data compilations, and software, is the property of Web Security Awareness or its
+                    content suppliers and is protected by international copyright laws.</p>
+                <p>The compilation of all content on this Website is the exclusive property of Web Security Awareness
+                    and is protected by international copyright laws. All software used on this Website is the property
+                    of Web Security Awareness or its software suppliers and is protected by international copyright
+                    laws.</p>
+                <p>You may not reproduce, distribute, modify, create derivative works of, publicly display, publicly
+                    perform, republish, download, store, or transmit any of the material on our Website, except as
+                    follows:</p>
+                <ul class="terms-list">
+                    <li>Your computer may temporarily store copies of such materials in RAM incidental to your accessing
+                        and viewing those materials.</li>
+                    <li>You may store files that are automatically cached by your Web browser for display enhancement
+                        purposes.</li>
+                    <li>You may print or download one copy of a reasonable number of pages of the Website for your own
+                        personal, non-commercial use and not for further reproduction, publication, or distribution.
+                    </li>
+                    <li>If we provide social media features with certain content, you may take such actions as are
+                        enabled by such features.</li>
+                </ul>
+            </div>
+
+            <div id="user-content" class="terms-section">
+                <h3>3. User-Generated Content</h3>
+                <p>The Website may contain interactive features that allow users to post, submit, publish, display, or
+                    transmit content or materials. All User Content must comply with the Content Standards set out in
+                    these Terms.</p>
+                <p>Any User Content you post to the site will be considered non-confidential and non-proprietary. By
+                    providing any User Content on the Website, you grant us and our affiliates and service providers,
+                    and each of their and our respective licensees, successors, and assigns the right to use, reproduce,
+                    modify, perform, display, distribute, and otherwise disclose to third parties any such material.</p>
+                <p>You represent and warrant that:</p>
+                <ul class="terms-list">
+                    <li>You own or control all rights in and to the User Content and have the right to grant the license
+                        granted above to us and our affiliates and service providers.</li>
+                    <li>All of your User Content does and will comply with these Terms.</li>
+                    <li>You understand and acknowledge that you are responsible for any User Content you submit or
+                        contribute, and you, not the Company, have full responsibility for such content, including its
+                        legality, reliability, accuracy, and appropriateness.</li>
+                </ul>
+            </div>
+
+            <div id="security-practices" class="terms-section">
+                <h3>4. Security Practices</h3>
+                <p>Web Security Awareness is an educational platform designed to teach users about web security
+                    vulnerabilities. All simulations and demonstrations on this Website are designed for educational
+                    purposes only.</p>
+                <p>You agree not to use any knowledge or techniques learned from this Website for illegal activities or
+                    to exploit vulnerabilities in systems you do not own or have explicit permission to test.</p>
+                <p>We explicitly prohibit:</p>
+                <ul class="terms-list">
+                    <li>Attempting to gain unauthorized access to secure areas of the Website not intended for public
+                        access.</li>
+                    <li>Testing security vulnerabilities on our live Website outside of designated testing environments.
+                    </li>
+                    <li>Using information gained from our Website to attack or exploit other websites or systems.</li>
+                    <li>Sharing exploitation techniques with others who may use them for malicious purposes.</li>
+                </ul>
+                <p>Violation of these prohibitions may result in termination of your access to the Website and potential
+                    legal action.</p>
+            </div>
+
+            <div id="disclaimer" class="terms-section">
+                <h3>5. Disclaimer of Warranties</h3>
+                <p>YOUR USE OF THE WEBSITE, ITS CONTENT, AND ANY SERVICES OR ITEMS OBTAINED THROUGH THE WEBSITE IS AT
+                    YOUR OWN RISK. THE WEBSITE, ITS CONTENT, AND ANY SERVICES OR ITEMS OBTAINED THROUGH THE WEBSITE ARE
+                    PROVIDED ON AN "AS IS" AND "AS AVAILABLE" BASIS, WITHOUT ANY WARRANTIES OF ANY KIND, EITHER EXPRESS
+                    OR IMPLIED.</p>
+                <p>NEITHER THE COMPANY NOR ANY PERSON ASSOCIATED WITH THE COMPANY MAKES ANY WARRANTY OR REPRESENTATION
+                    WITH RESPECT TO THE COMPLETENESS, SECURITY, RELIABILITY, QUALITY, ACCURACY, OR AVAILABILITY OF THE
+                    WEBSITE.</p>
+                <p>THE FOREGOING DOES NOT AFFECT ANY WARRANTIES WHICH CANNOT BE EXCLUDED OR LIMITED UNDER APPLICABLE
+                    LAW.</p>
+            </div>
+
+            <div id="limitation" class="terms-section">
+                <h3>6. Limitation of Liability</h3>
+                <p>IN NO EVENT WILL THE COMPANY, ITS AFFILIATES OR THEIR LICENSORS, SERVICE PROVIDERS, EMPLOYEES,
+                    AGENTS, OFFICERS, OR DIRECTORS BE LIABLE FOR DAMAGES OF ANY KIND, UNDER ANY LEGAL THEORY, ARISING
+                    OUT OF OR IN CONNECTION WITH YOUR USE, OR INABILITY TO USE, THE WEBSITE, ANY WEBSITES LINKED TO IT,
+                    ANY CONTENT ON THE WEBSITE OR SUCH OTHER WEBSITES OR ANY SERVICES OR ITEMS OBTAINED THROUGH THE
+                    WEBSITE OR SUCH OTHER WEBSITES.</p>
+                <p>THE FOREGOING DOES NOT AFFECT ANY LIABILITY WHICH CANNOT BE EXCLUDED OR LIMITED UNDER APPLICABLE LAW.
+                </p>
+            </div>
+
+            <div id="indemnification" class="terms-section">
+                <h3>7. Indemnification</h3>
+                <p>You agree to defend, indemnify, and hold harmless the Company, its affiliates, licensors, and service
+                    providers, and its and their respective officers, directors, employees, contractors, agents,
+                    licensors, suppliers, successors, and assigns from and against any claims, liabilities, damages,
+                    judgments, awards, losses, costs, expenses, or fees (including reasonable attorneys' fees) arising
+                    out of or relating to your violation of these Terms or your use of the Website.</p>
+            </div>
+
+            <div id="modification" class="terms-section">
+                <h3>8. Modification of Terms</h3>
+                <p>We may revise and update these Terms from time to time in our sole discretion. All changes are
+                    effective immediately when we post them, and apply to all access to and use of the Website
+                    thereafter.</p>
+                <p>Your continued use of the Website following the posting of revised Terms means that you accept and
+                    agree to the changes. You are expected to check this page frequently so you are aware of any
+                    changes, as they are binding on you.</p>
+            </div>
+
+            <div id="governing-law" class="terms-section">
+                <h3>9. Governing Law</h3>
+                <p>These Terms and any dispute or claim arising out of or related to them, their subject matter or their
+                    formation shall be governed by and construed in accordance with the laws of the United States and
+                    the State of California, without giving effect to any choice or conflict of law provision or rule.
+                </p>
+                <p>Any legal suit, action, or proceeding arising out of, or related to, these Terms or the Website shall
+                    be instituted exclusively in the federal courts of the United States or the courts of the State of
+                    California. You waive any and all objections to the exercise of jurisdiction over you by such courts
+                    and to venue in such courts.</p>
+            </div>
+
+            <div id="contact-us" class="terms-section">
+                <h3>10. Contact Us</h3>
+                <p>If you have any questions about these Terms and Conditions, please contact us at:</p>
+                <p>
+                    Web Security Awareness<br>
+                    123 Security Street<br>
+                    Cyber City, CC 12345<br>
+                    Email: legal@websecurityawareness.com<br>
+                    Phone: +1 (555) 123-4567
+                </p>
+            </div>
+
+            <div class="last-updated">
+                These Terms and Conditions were last updated on March 21, 2025.
+            </div>
+
+            <div style="text-align: center; margin-top: 2rem;">
+                <a href="index.html" class="btn btn-outline">Back to Home</a>
+                <button id="printTerms" class="btn">Print Terms</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="scroll-top" id="scrollTop">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>About Us</h3>
+                <p>Web Security Awareness is dedicated to educating developers and security enthusiasts about web
+                    vulnerabilities and protection measures.</p>
+            </div>
+
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="contact/index.html">Contact</a></li>
+                    <li><a href="terms.html">Terms of Service</a></li>
+                    <li><a href="#privacy">Privacy Policy</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3>Contact Info</h3>
+                <ul class="contact-info">
+                    <li><i class="fas fa-map-marker-alt"></i> 123 Security Street, Cyber City, CC 12345</li>
+                    <li><i class="fas fa-phone"></i> +1 (555) 123-4567</li>
+                    <li><i class="fas fa-envelope"></i> info@websecurityawareness.com</li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3>Connect With Us</h3>
+                <div class="social-links">
+                    <a href="#" class="social-link"><i class="fab fa-facebook"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+                </div>
+                <div class="newsletter">
+                    <h4>Subscribe to Newsletter</h4>
+                    <form class="subscribe-form">
+                        <input type="email" placeholder="Enter your email">
+                        <button type="submit">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Web Security Awareness. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Page Loader
+        window.addEventListener('load', function () {
+            setTimeout(function () {
+                document.getElementById('pageLoader').style.opacity = '0';
+                setTimeout(function () {
+                    document.getElementById('pageLoader').style.display = 'none';
+                }, 500);
+            }, 500);
+        });
+
+        // Mobile Menu Toggle
+        document.getElementById('hamburger').addEventListener('click', function () {
+            this.classList.toggle('active');
+            document.getElementById('nav-menu').classList.toggle('active');
+        });
+
+        // Close Mobile Menu when clicking outside
+        document.addEventListener('click', function (event) {
+            const hamburger = document.getElementById('hamburger');
+            const navMenu = document.getElementById('nav-menu');
+
+            if (!hamburger.contains(event.target) && !navMenu.contains(event.target) && navMenu.classList.contains('active')) {
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+            }
+        });
+
+        // Scroll to Top Button
+        const scrollTopBtn = document.getElementById('scrollTop');
+
+        window.addEventListener('scroll', function () {
+            if (window.pageYOffset > 300) {
+                scrollTopBtn.classList.add('active');
+            } else {
+                scrollTopBtn.classList.remove('active');
+            }
+        });
+
+        scrollTopBtn.addEventListener('click', function () {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Smooth Scrolling for Navigation Links
+        document.querySelectorAll('.terms-navigation a').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+
+                window.scrollTo({
+                    top: targetElement.offsetTop - 100,
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Print Terms Button
+        document.getElementById('printTerms').addEventListener('click', function () {
+            window.print();
+        });
+
+        // Current Year for Footer Copyright
+        document.addEventListener('DOMContentLoaded', function() {
+            const year = new Date().getFullYear();
+            document.querySelector('.footer-bottom p').innerHTML = `&copy; ${year} Web Security Awareness. All rights reserved.`;
+        });
+
+        // Highlight active section in navigation
+        window.addEventListener('scroll', function() {
+            const sections = document.querySelectorAll('.terms-section');
+            const navItems = document.querySelectorAll('.terms-navigation a');
+
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 120;
+                const sectionBottom = sectionTop + section.offsetHeight;
+                const scrollPosition = window.scrollY;
+
+                if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
+                    const currentId = section.getAttribute('id');
+                    navItems.forEach(item => {
+                        item.classList.remove('active');
+                        if (item.getAttribute('href') === `#${currentId}`) {
+                            item.classList.add('active');
+                        }
+                    });
+                }
+            });
+        });
+
+        // Add smooth scroll behavior for all internal links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                if (this.getAttribute('href') !== '#') {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
