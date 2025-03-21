@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XSS Security</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <i data-lucide="shield" class="brand-icon"></i>
+                <span class="brand-text">XSS Security</span>
+            </div>
+            
+            <!-- Desktop Menu -->
+            <div class="desktop-menu">
+                <a href="#home">Home</a>
+                <a href="#about">About XSS</a>
+                <a href="#types">Types</a>
+                <a href="#prevention">Prevention</a>
+                <a href="#demo">Video Demo</a>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <button class="mobile-menu-button">
+                <i data-lucide="menu" class="menu-icon"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div class="mobile-menu hidden">
+            <a href="#home">Home</a>
+            <a href="#about">About XSS</a>
+            <a href="#types">Types</a>
+            <a href="#prevention">Prevention</a>
+            <a href="#demo">Video Demo</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="text-center">
+                <h1>Understanding Cross-Site Scripting (XSS)</h1>
+                <p>Learn about one of the most common web security vulnerabilities and how to prevent it</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- About XSS Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2>What is Cross-Site Scripting?</h2>
+            <div class="about-grid">
+                <div class="about-content">
+                    <p>
+                        Cross-Site Scripting (XSS) is a security vulnerability that allows attackers to inject malicious scripts into web pages viewed by other users. These scripts can steal sensitive information, hijack user sessions, or deface websites.
+                    </p>
+                    <div class="alert">
+                        <i data-lucide="alert-triangle"></i>
+                        <span>High-Risk Security Threat</span>
+                    </div>
+                </div>
+                <div class="impact-box">
+                    <h3>Impact of XSS Attacks</h3>
+                    <ul>
+                        <li>
+                            <i data-lucide="shield-alert"></i>
+                            <span>Cookie theft and session hijacking</span>
+                        </li>
+                        <li>
+                            <i data-lucide="shield-alert"></i>
+                            <span>Keylogging and data theft</span>
+                        </li>
+                        <li>
+                            <i data-lucide="shield-alert"></i>
+                            <span>Website defacement</span>
+                        </li>
+                        <li>
+                            <i data-lucide="shield-alert"></i>
+                            <span>Malware distribution</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Types of XSS Section -->
+    <section id="types" class="types">
+        <div class="container">
+            <h2>Types of XSS Attacks</h2>
+            <div class="types-grid">
+                <div class="type-card">
+                    <i data-lucide="shield"></i>
+                    <h3>Reflected XSS</h3>
+                    <p>Non-persistent attacks where malicious scripts are reflected off a web server through error messages or search results.</p>
+                </div>
+                <div class="type-card">
+                    <i data-lucide="shield"></i>
+                    <h3>Stored XSS</h3>
+                    <p>Persistent attacks where malicious scripts are permanently stored on target servers and executed when users access the content.</p>
+                </div>
+                <div class="type-card">
+                    <i data-lucide="shield"></i>
+                    <h3>DOM-based XSS</h3>
+                    <p>Client-side attacks where the vulnerability exists in client-side code rather than server-side code.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Prevention Section -->
+    <section id="prevention" class="prevention">
+        <div class="container">
+            <h2>XSS Prevention</h2>
+            <div class="prevention-grid">
+                <div class="code-example">
+                    <h3>Input Validation</h3>
+                    <div class="code-block">
+                        <i data-lucide="code-2"></i>
+                        <pre><code>
+// Example of input sanitization
+const sanitizeInput = (input) => {
+    return input.replace(/[<>]/g, '');
+};</code></pre>
+                    </div>
+                </div>
+                <div class="best-practices">
+                    <h3>Security Best Practices</h3>
+                    <ul>
+                        <li>
+                            <i data-lucide="shield"></i>
+                            <span>Use Content Security Policy (CSP)</span>
+                        </li>
+                        <li>
+                            <i data-lucide="shield"></i>
+                            <span>Encode output data</span>
+                        </li>
+                        <li>
+                            <i data-lucide="shield"></i>
+                            <span>Validate input on server-side</span>
+                        </li>
+                        <li>
+                            <i data-lucide="shield"></i>
+                            <span>Use security headers</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Video Demo Section -->
+    <section id="demo" class="demo">
+        <div class="container">
+            <h2>XSS Attack Demonstration</h2>
+            <div class="video-container">
+                <iframe
+                    src="https://www.youtube.com/embed/EoaDgUgS6QA"
+                    title="Understanding Cross-Site Scripting (XSS)"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen>
+                </iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <h3>XSS Security</h3>
+                    <p>Protecting web applications from cross-site scripting vulnerabilities.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about">About XSS</a></li>
+                        <li><a href="#types">Types of XSS</a></li>
+                        <li><a href="#prevention">Prevention</a></li>
+                    </ul>
+                </div>
+                <div class="footer-resources">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="https://owasp.org/www-community/attacks/xss/">OWASP XSS</a></li>
+                        <li><a href="https://www.sans.org/">SANS Institute</a></li>
+                        <li><a href="https://portswigger.net/">PortSwigger</a></li>
+                    </ul>
+                </div>
+                <div class="footer-social">
+                    <h4>Connect</h4>
+                    <div class="social-icons">
+                        <i data-lucide="github"></i>
+                        <i data-lucide="twitter"></i>
+                        <i data-lucide="linkedin"></i>
+                        <i data-lucide="mail"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; <span id="year"></span> XSS Security. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

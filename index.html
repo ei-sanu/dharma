@@ -1,17 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Web Security Awareness</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="icon" type="image/png" href="favicon/DHARMA.png">
 </head>
-
 <body>
+    <div class="page-loader" id="pageLoader">
+        <div class="loader-content">
+            <div class="loader-spinner"></div>
+            <div class="loader-text">LOADING...</div>
+        </div>
+    </div>
+    <div class="preloader" id="preloader">
+        <div class="loader"></div>
+    </div>
     <div class="background-spline">
-        <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.73/build/spline-viewer.js"></script>
-        <spline-viewer url="https://prod.spline.design/K627SVxLxlacE6WF/scene.splinecode"></spline-viewer>
+<script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.79/build/spline-viewer.js"></script>
+<spline-viewer url="https://prod.spline.design/RjXkwRUEcb7tJJ43/scene.splinecode"></spline-viewer>
     </div>
     <header>
         <nav class="navbar">
@@ -25,13 +34,14 @@
             </div>
             <div class="nav-menu" id="nav-menu">
                 <ul class="nav-links">
-                    <li><a href="#" class="nav-link active" data-target="intro">Introduction</a></li>
+                    <li><a href="index.html" class="nav-link active" data-target="intro">Introduction</a></li>
                     <li><a href="sqlinjection/project/index.html" class="nav-link" data-target="sql-injection">SQL Injection</a></li>
-                    <li><a href="#" class="nav-link" data-target="xss">Cross-Site Scripting (XSS)</a></li>
-                    <li><a href="#" class="nav-link" data-target="csrf">Cross-Site Request Forgery</a></li>
+                    <li><a href="xss/project/index.html" class="nav-link" data-target="xss">Cross-Site Scripting (XSS)</a></li>
+                    <li><a href="cross/project/index.html" class="nav-link" data-target="csrf">Cross-Site Request Forgery</a></li>
                     <li><a href="#" class="nav-link" data-target="about">About</a></li>
-                    <li><a href="#" class="nav-link" data-target="resources">Resources</a></li>
-                    <li><a href="#" class="nav-link" data-target="contact">Contact</a></li>
+                    <!-- <li><a href="#" class="nav-link" data-target="resources">Resources</a></li> -->
+                    <li><a href="contact/index.html" class="nav-link" data-target="contact">Contact</a></li>
+                    <li><a href="login.html" class="nav-link login-btn" data-target="login">Login</a></li>
                 </ul>
             </div>
         </nav>
@@ -275,6 +285,63 @@ $result = $stmt->get_result();</code></pre>
         </div>
     </div>
     <script src="script.js"></script>
+    <div class="chatbot-icon" id="chatbot-icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="white">
+            <path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H6l-2 2V4h16v12z"/>
+            <path d="M7 9h10v2H7zm0-3h10v2H7zm0 6h7v2H7z"/>
+        </svg>
+    </div>
+    <div class="chatbot-popup" id="chatbot-popup">
+        <iframe src="assets/chatbot/chatbot.html" class="chatbot-iframe"></iframe>
+    </div>
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>About Us</h3>
+                <p>Web Security Awareness is dedicated to educating developers and security enthusiasts about web vulnerabilities and protection measures.</p>
+            </div>
+
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="contact/index.html">Contact</a></li>
+                    <li><a href="#privacy">Privacy Policy</a></li>
+                    <li><a href="#terms">Terms of Service</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3>Contact Info</h3>
+                <ul class="contact-info">
+                    <li><i class="fas fa-map-marker-alt"></i> 123 Security Street, Cyber City, CC 12345</li>
+                    <li><i class="fas fa-phone"></i> +1 (555) 123-4567</li>
+                    <li><i class="fas fa-envelope"></i> info@websecurityawareness.com</li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3>Connect With Us</h3>
+                <div class="social-links">
+                    <a href="#" class="social-link"><i class="fab fa-facebook"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+                </div>
+                <div class="newsletter">
+                    <h4>Subscribe to Newsletter</h4>
+                    <form class="subscribe-form">
+                        <input type="email" placeholder="Enter your email">
+                        <button type="submit">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Web Security Awareness. All rights reserved.</p>
+        </div>
+    </footer>
 </body>
 
 </html>

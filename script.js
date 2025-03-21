@@ -1,5 +1,23 @@
 /* filepath: /home/sanu/cyber/script.js */
 document.addEventListener('DOMContentLoaded', () => {
+    const pageLoader = document.getElementById('pageLoader');
+
+    // Hide loader when everything is loaded
+    window.addEventListener('load', () => {
+        setTimeout(() => {
+            pageLoader.style.opacity = '0';
+            pageLoader.style.transition = 'opacity 0.5s ease-out';
+
+            setTimeout(() => {
+                pageLoader.style.display = 'none';
+                // Trigger page content animation
+                document.body.classList.add('content-loaded');
+            }, 500);
+        }, 1000); // Show loader for at least 1 second
+    });
+});
+
+document.addEventListener('DOMContentLoaded', () => {
     const hamburger = document.querySelector('#hamburger');
     const navMenu = document.querySelector('#nav-menu');
 
@@ -90,4 +108,63 @@ document.addEventListener('DOMContentLoaded', () => {
 
     startBtn.addEventListener('click', startAnimation);
     resetBtn.addEventListener('click', resetAnimation);
+});
+
+// Chatbot popup functionality
+document.addEventListener('DOMContentLoaded', function () {
+    const chatbotIcon = document.getElementById('chatbot-icon');
+    const chatbotPopup = document.getElementById('chatbot-popup');
+
+    chatbotIcon.addEventListener('click', function () {
+        chatbotPopup.classList.toggle('active');
+    });
+
+    // Close popup when clicking outside
+    document.addEventListener('click', function (event) {
+        if (!chatbotPopup.contains(event.target) &&
+            !chatbotIcon.contains(event.target) &&
+            chatbotPopup.classList.contains('active')) {
+            chatbotPopup.classList.remove('active');
+        }
+    });
+});
+
+// Page load animation
+document.addEventListener('DOMContentLoaded', () => {
+    // Remove preloader after page loads
+    window.addEventListener('load', () => {
+        const preloader = document.getElementById('preloader');
+        preloader.classList.add('fade-out');
+        setTimeout(() => {
+            preloader.style.display = 'none';
+        }, 500);
+    });
+
+    // Add animation classes to elements as they appear in viewport
+    const animateOnScroll = () => {
+        const elements = document.querySelectorAll('.card, .footer-section');
+        elements.forEach(element => {
+            const elementTop = element.getBoundingClientRect().top;
+            const windowHeight = window.innerHeight;
+
+            if (elementTop < windowHeight - 50) {
+                element.style.opacity = '1';
+                element.style.transform = 'translateY(0)';
+            }
+        });
+    };
+
+    // Listen for scroll events
+    window.addEventListener('scroll', animateOnScroll);
+    animateOnScroll(); // Initial check
+});
+
+// Resize animation
+let resizeTimer;
+window.addEventListener('resize', () => {
+    document.body.classList.add('resize-animation-stopper');
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(() => {
+        document.body.classList.remove('resize-animation-stopper');
+    }, 400);
 });
